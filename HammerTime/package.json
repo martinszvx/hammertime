@@ -1,0 +1,15 @@
+{
+  "name": "hammer-time-local",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local Hammer Time prototype with commented JSONC persistence.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "jsonc-parser": "^3.3.1"
+  }
+}

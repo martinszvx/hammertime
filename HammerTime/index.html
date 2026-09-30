@@ -1,0 +1,192 @@
+<!doctype html>
+<!-- Documento raiz em português brasileiro; todas as telas locais ficam neste arquivo. -->
+<html lang="en-US">
+  <head>
+    <!-- Codificação, viewport móvel, cor da barra do navegador e resumo para buscadores. -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f2eb" />
+    <meta name="description" content="Find trusted professionals to take care of your home." />
+    <title>Hammer Time | Home Services</title>
+    <!-- Fontes remotas usadas nos títulos e nos textos da aplicação. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Folha de estilos e lógica carregada depois que o HTML for interpretado. -->
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <!-- Contêiner semântico principal que agrupa entrada e aplicativo autenticado. -->
+    <main id="app">
+      <!-- Entrada do aplicativo: apresentação da marca e acesso/criação de conta. -->
+      <section class="gate-screen" id="gate-screen" aria-labelledby="welcome-title">
+        <div class="gate-content">
+          <!-- Marca única da tela de entrada, sem painel ou fotografia de fundo. -->
+          <a class="brand brand-gate" href="#" aria-label="Hammer Time home">
+            <span class="brand-mark" aria-hidden="true"><span class="hammer-handle"></span><span class="hammer-head"></span></span>
+            <span>HAMMER<span class="brand-light">TIME</span></span>
+          </a>
+          <div class="gate-copy">
+            <!-- Apresentação curta da plataforma, visível antes do login. -->
+            <p class="eyebrow">WELCOME TO HAMMER TIME</p>
+            <h1 id="welcome-title">Home services,<br /><span>made quick & easy.</span></h1>
+            <p class="intro-copy">Connect with qualified professionals to take care of home repairs, without the hassle.</p>
+          </div>
+
+          <!-- Os dois campos ficam juntos; o alternador escolhe entrar ou cadastrar. -->
+          <form class="auth-form" id="auth-form" novalidate>
+            <!-- Este cabeçalho muda entre os modos de login e criação de conta. -->
+            <div class="form-heading">
+              <p class="eyebrow" id="form-eyebrow">ACCOUNT SIGN IN</p>
+              <h2 id="form-title">Sign in to your account</h2>
+              <p id="form-description">Enter your email and password to continue.</p>
+            </div>
+            <!-- E-mail identifica a conta; autocomplete ajuda o preenchimento do navegador. -->
+            <label class="field-label" for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required maxlength="120" />
+            <!-- A senha aparece junto ao e-mail e tem limite compatível com a API local. -->
+            <label class="field-label password-label" for="password">Password</label>
+            <div class="password-field">
+              <input id="password" name="password" type="password" placeholder="At least 8 characters" autocomplete="current-password" required minlength="8" maxlength="256" />
+              <!-- Botão acessível alterna a visibilidade sem mudar o tipo inicial password. -->
+              <button class="password-toggle" id="password-toggle" type="button" aria-label="Show password" aria-pressed="false" title="Show password">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z" />
+                  <circle cx="12" cy="12" r="3" />
+                  <path id="password-eye-slash" d="M3 3l18 18" />
+                </svg>
+              </button>
+            </div>
+            <!-- Alterna o endpoint usado pelo botão: entrar ou registrar uma conta. -->
+            <button class="auth-mode" id="mode-toggle" type="button">New here? <span>Create an account</span></button>
+
+            <!-- Área acessível para erros devolvidos pela validação ou API. -->
+            <p class="form-error" id="form-error" role="alert" hidden></p>
+            <!-- Envia as credenciais e mostra o estado ocupado durante a requisição. -->
+            <button class="primary-button" id="auth-submit" type="submit">
+              <span id="submit-label">Sign in</span>
+              <span class="button-arrow" aria-hidden="true">↪</span>
+            </button>
+            <!-- Nota explicativa do modo atual, atualizada pelo JavaScript. -->
+            <p class="form-note" id="form-note">Fast, reliable, hassle-free access.</p>
+          </form>
+
+          <!-- Ações legais e suporte da tela de entrada. -->
+          <footer class="gate-footer"><span>© 2026 Hammer Time</span><button type="button" data-dialog="support">Terms & support</button><button type="button" data-dialog="privacy">Privacy</button></footer>
+        </div>
+      </section>
+
+      <!-- Área autenticada com navegação, catálogo e telas de solicitação/histórico. -->
+      <section class="workspace" id="workspace" hidden>
+        <!-- Cabeçalho persistente com marca, suporte e botão de saída. -->
+        <header class="app-header">
+          <a class="brand app-brand" href="#home" data-view-link="home" aria-label="Hammer Time home">
+            <span class="brand-mark" aria-hidden="true"><span class="hammer-handle"></span><span class="hammer-head"></span></span>
+            <span>HAMMER<span class="brand-light">TIME</span></span>
+          </a>
+          <div class="header-right">
+            <button class="support-button" type="button" data-dialog="support"><span class="support-dot"></span>Support</button>
+            <button class="account-button" id="account-button" type="button" aria-label="Sign out"><span id="account-initial">H</span></button>
+          </div>
+        </header>
+
+        <!-- Layout com navegação lateral no desktop e navegação inferior no celular. -->
+        <div class="workspace-layout">
+          <aside class="side-rail" aria-label="Main navigation">
+            <p class="rail-label">MENU</p>
+            <button class="nav-item active" data-view="home" type="button"><span class="nav-icon">⌂</span>Home</button>
+            <button class="nav-item" data-view="request" type="button"><span class="nav-icon">＋</span>Request</button>
+            <button class="nav-item" data-view="history" type="button"><span class="nav-icon">◷</span>History</button>
+          </aside>
+
+          <div class="view-area">
+            <section class="app-view" id="home-view" aria-labelledby="home-title">
+              <!-- Saudação, título principal e selo decorativo do painel inicial. -->
+              <div class="welcome-row">
+                <div>
+                  <p class="eyebrow">HAMMER TIME / HOME SERVICES</p>
+                  <p class="welcome-back">Hello, welcome back!</p>
+                  <h1 id="home-title">What does your home<br class="mobile-break" /> need today?</h1>
+                  <p class="section-intro">Find the right help and get it taken care of in just a few clicks.</p>
+                </div>
+              </div>
+
+              <!-- Campo filtra o catálogo; a tecla / também leva o foco até aqui. -->
+              <div class="search-box">
+                <span class="search-icon" aria-hidden="true"></span>
+                <label class="visually-hidden" for="service-search">Search services</label>
+                <input id="service-search" type="search" placeholder="What service do you need?" />
+                <!-- Botão limpa o texto e restaura a lista completa de serviços. -->
+                <button class="search-clear" id="search-clear" type="button" aria-label="Clear search" title="Clear search" hidden>×</button>
+                <kbd>/</kbd>
+              </div>
+
+              <!-- Categorias são inseridas pelo JavaScript conforme a busca. -->
+              <div class="section-heading"><div><p class="eyebrow">CHOOSE A CATEGORY</p><h2>Popular services</h2></div><button class="text-button" type="button" data-view-link="request">View all <span aria-hidden="true">↪</span></button></div>
+              <div class="service-grid" id="service-grid"></div>
+
+            </section>
+
+            <!-- Formulário validado no navegador e salvo pela API na coleção de pedidos. -->
+            <section class="app-view request-view" id="request-view" aria-labelledby="request-title" hidden>
+              <button class="back-button" data-view-link="home" type="button"><span aria-hidden="true">←</span> Back to home</button>
+              <p class="eyebrow">LET'S GET IT TAKEN CARE OF</p>
+              <h1 id="request-title">Request a service</h1>
+              <p class="section-intro">Tell us what you need and we’ll take it from there.</p>
+              <div class="request-layout">
+                <!-- O formulário envia os detalhes; a coluna ao lado os espelha ao vivo. -->
+                <form class="request-form" id="request-form">
+                  <!-- Categoria preenche automaticamente ao escolher um cartão na tela inicial. -->
+                  <label class="form-field"><span>Service type</span><select name="service" id="request-service" required><option value="">Select a service</option><option>Plumber</option><option>Electrician</option><option>Painter</option><option>Furniture assembler</option><option>Other</option></select></label>
+                  <!-- Número de telefone para o profissional combinar o atendimento. -->
+                  <label class="form-field"><span>Phone number</span><input name="phone" type="tel" autocomplete="tel" placeholder="+1 (555) 000-0000" required maxlength="25" /><small>The professional will use this number to contact you.</small></label>
+                  <!-- Relato livre do serviço, limitado para evitar registros excessivos. -->
+                  <label class="form-field full-field"><span>What needs to be done?</span><textarea name="description" rows="3" placeholder="e.g. The kitchen sink pipe is leaking under the cabinet..." required maxlength="1200"></textarea><small>Describe the issue so the professional can prepare for the job.</small></label>
+                  <!-- Endereço onde o profissional deve prestar o serviço. -->
+                  <label class="form-field full-field"><span>Service address</span><input name="address" autocomplete="street-address" placeholder="Street, number, neighborhood, city" required maxlength="240" /></label>
+                  <!-- Data e horário são preferências, não uma confirmação de agendamento. -->
+                  <label class="form-field"><span>Preferred date</span><input name="date" type="date" lang="en-US" required /></label>
+                  <label class="form-field"><span>Preferred time</span><input name="time" type="time" lang="en-US" required /></label>
+                  <!-- Erros ficam junto ao formulário e o botão só envia dados válidos. -->
+                  <p class="request-error form-error full-field" id="request-error" role="alert" hidden></p>
+                  <button class="primary-button full-field" type="submit"><span>Submit request</span><span class="button-arrow" aria-hidden="true">↪</span></button>
+                </form>
+
+                <!-- Prévia resumida e valor de referência ajustados conforme os campos acima. -->
+                <aside class="request-summary" aria-labelledby="summary-title">
+                  <p class="eyebrow">REQUEST PREVIEW</p>
+                  <h2 id="summary-title">Request summary</h2>
+                  <dl class="summary-details">
+                    <div><dt>Service</dt><dd id="preview-service">Choose a category</dd></div>
+                    <div><dt>When</dt><dd id="preview-schedule">Choose a date and time</dd></div>
+                    <div><dt>Description</dt><dd id="preview-description">Your details will appear here as you fill out the form.</dd></div>
+                    <div><dt>Address</dt><dd id="preview-address">Not provided yet</dd></div>
+                  </dl>
+                  <div class="estimate-block"><span>Initial estimate</span><strong id="preview-price">Select a service</strong></div>
+                  <p class="estimate-note">This is a reference range, not a final quote. The professional will confirm the price after reviewing the job.</p>
+                </aside>
+              </div>
+            </section>
+
+            <!-- Pedidos recuperados da API são renderizados nesta lista. -->
+            <section class="app-view history-view" id="history-view" aria-labelledby="history-title" hidden>
+              <p class="eyebrow">YOUR REQUESTS</p>
+              <h1 id="history-title">Request history</h1>
+              <p class="section-intro">Review the services you’ve requested.</p>
+              <div class="history-list" id="history-list"></div>
+            </section>
+          </div>
+        </div>
+        <!-- Atalhos compactos que substituem a barra lateral em telas estreitas. -->
+        <nav class="mobile-nav" aria-label="Main navigation"><button class="active" data-view="home" type="button"><span>⌂</span>Home</button><button data-view="request" type="button"><span>＋</span>Request</button><button data-view="history" type="button"><span>◷</span>History</button></nav>
+      </section>
+    </main>
+
+    <!-- Janela reutilizada pelos links de suporte e privacidade. -->
+    <!-- Diálogo modal recebe texto de privacidade ou suporte sem duplicar estruturas. -->
+    <dialog class="info-dialog" id="info-dialog"><button class="dialog-close" id="dialog-close" type="button" aria-label="Close">×</button><p class="eyebrow" id="dialog-eyebrow">HAMMER TIME</p><h2 id="dialog-title">Support</h2><p id="dialog-copy">Contact our team at support@hammertime.local.</p></dialog>
+    <!-- Região anunciada por leitores de tela para confirmações e erros temporários. -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>

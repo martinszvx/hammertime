@@ -1,0 +1,32 @@
+{
+  // Lista de solicitações salvas. Cada objeto é um pedido feito por uma conta.
+  // id identifica o pedido; email liga o pedido à conta que o criou.
+  // service e description descrevem o trabalho; phone e address permitem o contato e o atendimento.
+  // date e time são a preferência do cliente; estimatedPrice é uma faixa indicativa, não um orçamento.
+  // createdAt marca quando o pedido foi registrado no formato ISO 8601.
+  "requests": [
+    {
+      "id": "fa44fe2e-0f21-4bf8-b3ea-8eb8bf4f6a1d",
+      "email": "lucasmartins.b07@gmail.com",
+      "service": "Montador de móveis",
+      "phone": "+55 51 99429-4403",
+      "description": "Montar meu sofá da sala.",
+      "address": "Rua Kansas, 29, casa",
+      "date": "2026-10-01",
+      "time": "14:00",
+      "createdAt": "2026-09-29T22:15:49.881Z"
+    },
+    {
+      "id": "6c5ae188-c6a3-44c3-816a-c3006e95f2ff",
+      "email": "lucasmartins.b07@gmail.com",
+      "service": "Painter",
+      "phone": "+55 51 99429-4403",
+      "description": "I want to paint my bedroom ",
+      "address": "Rua Kansas, 29, casa",
+      "date": "2026-10-03",
+      "time": "15:00",
+      "estimatedPrice": "R$ 250 - R$ 900",
+      "createdAt": "2026-09-30T00:47:26.969Z"
+    }
+  ]
+}

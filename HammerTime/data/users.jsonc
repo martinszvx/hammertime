@@ -1,0 +1,13 @@
+{
+  // Lista de contas cadastradas no Hammer Time. Cada objeto abaixo é uma conta.
+  // email é o identificador; salt e passwordHash validam a senha sem guardar o texto original.
+  // createdAt registra quando a conta foi criada, no formato ISO 8601.
+  "users": [
+    {
+      "email": "lucasmartins.b07@gmail.com",
+      "salt": "9714a598634f5c6a49509023def38b63",
+      "passwordHash": "40333fed6b1a4bf87edfcf224f9cbba2479fadf279e20024d20acc505117c51d213607a3031d8f4742bb7d6fd1414e711dff037f0c3c6d356c62bd65dcd6140a",
+      "createdAt": "2026-09-29T22:14:13.249Z"
+    }
+  ]
+}
